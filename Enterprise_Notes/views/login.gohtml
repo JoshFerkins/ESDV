@@ -1,0 +1,72 @@
+{{define "bootstrap"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>What a wonderful day my friend</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        {{template "content" .}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+</body>
+
+</html>
+{{end}} {{define "content"}}
+<script>
+
+    function loginUser(){
+        let name = document.getElementById("usernameLoginID").value;
+        let pass = document.getElementById("passwordLoginID").value;
+        if(pass.length == 0) {
+            pass = "null";
+        };
+        var newUrl = '/' + name + '/' + pass + '/1';
+        window.location = newUrl;    
+    };
+
+    function registerUser(){
+        let name = document.getElementById("usernameRegisterID").value;
+        let pass = document.getElementById("passwordRegisterID").value;
+        if(pass.length == 0){
+            pass = "null";
+        };
+        var newUrl = '/' + name + '/' + pass + '/2';
+        window.location = newUrl;    
+    };
+
+</script>
+<div class="container">
+    <h1>Enterprise Notes</h1>
+
+    <div class="row">
+    
+    <div class="container col-6">
+        <h4>Login</h4>
+        <label for="usernameInputID">Username</label>
+        <input type="text" placeholder="UserName" name="usernameLogin" id="usernameLoginID"/>
+        <label for="passwordInputID">Password</label>
+        <input type="text" placeholder="Password" name="passwordLogin" id="passwordLoginID"/>
+        <a class="btn btn-light" role="button" id="loginButton" onclick="loginUser();return false;">Login</a>
+    </div>
+
+    <div class="container col-6">
+        <h4>Register</h4>
+        <label for="usernameRegisterID">Username</label>
+        <input type="text" placeholder="UserName" name="usernameRegister" id="usernameRegisterID"/>
+        <label for="passwordRegisterID">Password</label>
+        <input type="text" placeholder="Password" name="passwordRegister" id="passwordRegisterID"/>
+        <a class="btn btn-light" role="button" id="registerButton" onclick="registerUser();return false;">Register</a>
+    </div>
+
+    </div>
+
+</div>
+{{end}}

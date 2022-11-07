@@ -1,0 +1,121 @@
+{{define "bootstrap"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>What a wonderful day my friend</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        {{template "content" .}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+</body>
+
+</html>
+{{end}} {{define "content"}}
+<script>
+
+    function changeUserAction(){
+        let v = document.getElementById("actionSelectID").value;
+
+        if(v == "addUsers"){
+            document.getElementById("userActionID").setAttribute('name', 'addUsers');
+            document.getElementById("permSelectID").style.display = 'block';
+        } else {
+            document.getElementById("userActionID").setAttribute('name', 'removeUsers');
+            document.getElementById("permSelectID").style.display = 'none';
+        };
+    };
+</script>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f0feff;
+}
+</style>
+<div class="container">
+<div>
+    <h1>{{.Title}}</h1>
+
+    <a href="/index/" role="button" class="btn btn-gray">Go Home</a>
+
+    <form action="/edit/{{.NoteID}}" method="post">
+        <label for="editTitleID">Edit Title</label><br>
+        <input type="text" name="editTitle" id="editTitleID" value="{{.Title}}"><br>
+        <hr>
+        <textarea class="form-control" name="editContent" id="editContentID" rows="4">{{.Text.String}}</textarea><br>
+        
+        <label for="statusSelectID">Note Status</label><br>
+        <select class="custom-select" name="statusSelect" id="statusSelectID">
+            <option value="0" selected>Choose...</option>
+            <option value="1">In Progress</option>
+            <option value="2">Completed</option>
+            <option value="3">Canceled</option>
+            <option value="4">Halted</option>
+        </select><br>
+        <hr>
+
+        <label for="addUsersID">Add a friend</label><br>
+        <select class="custom-select" name="actionSelect" id="actionSelectID" onchange="changeUserAction()"><br>
+            <option value="addUsers" selected>Add user</option>
+            <option value="removeUsers">Remove user</option>
+        </select>
+
+        <input type="text" name="addUsers" id="userActionID" placeholder="Username"><br>
+
+        <label for="permSelectID">Permission Level</label><br>
+        <select class="custom-select" name="permSelect" id="permSelectID">
+            <option value="none" selected>Choose...</option>
+            <option value="1">View</option>
+            <option value="2">Edit</option>
+            <option value="3">Owner</option>
+        </select><br>
+
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Permission</th>
+            </thead>
+            <tbody>
+                {{range .Users}}
+                <tr>
+                    <td>{{.UserName}}</td>
+                    <td>{{.UserPhone}}</td>
+                    <td>{{.UserPerm}}</td>
+                </tr>
+                {{end}}
+            </tbody>
+        </table>
+
+        <hr>
+        <p>Typing a name into this input will save the users on this note as a sharing preset</p>
+        <input type="text" name="saveUsers" id="saveUsersID" placeholder="Preset Name"><br>
+
+        <hr>
+        
+        <input type="submit" value="Edit Note!">
+    </form>
+</div>
+
+
+</div>
+{{end}}

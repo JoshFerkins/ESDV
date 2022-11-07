@@ -1,0 +1,31 @@
+Things that I gotta do my G
+
+  - Administrative viewport / editing screen
+
+  - Add analyse note feature
+
+  - Completion filter
+
+  - Save user share settings
+
+Testing functions - come on mate
+
+Documentation - easy as shit matey potatey
+
+Assignment parts complete
+
+1. Find a note ✔
+
+2. Analyse a note 
+
+3. Read and / or edit a note ✔
+
+4. Change note sharing details ✔
+
+5. User settings 
+
+6. Light weight front end ✔
+
+7. Datastore ✔
+
+8. Documentation 

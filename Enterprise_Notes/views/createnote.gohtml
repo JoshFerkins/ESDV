@@ -1,0 +1,39 @@
+{{define "bootstrap"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>What a wonderful day my friend</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        {{template "content" .}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+</body>
+
+</html>
+{{end}} {{define "content"}}
+<div class="container">
+<div>
+    <h1>Create new note</h1>
+
+    <form action="/create/" method="post">
+      <label for="createTitleID">Note Title</label><br>
+      <input type="text" name="createTitle" id="createTitleID"><br>
+      <hr>
+      <textarea class="form-control" type="textarea" name="createContent" id="createContentID" rows="4"></textarea><br>
+      
+      <input type="submit" value="Create Note!">
+    </form>
+</div>
+
+
+</div>
+{{end}}

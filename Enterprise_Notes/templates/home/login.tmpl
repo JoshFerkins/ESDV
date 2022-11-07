@@ -1,0 +1,24 @@
+{{ define "home/login.tmpl" }}
+<body>
+
+  {{template "global/header.tmpl" .}}
+
+  <h1>Welcome</h1>
+
+
+  <form action="/loginAction" method="post" name="loginForm">
+    <div class="form-group">
+      <label for="usernameInput">Username:</label>
+      <input type="text" class="form-control" id="usernameInput" name="usernameInput">
+    </div>
+    <div class="form-group">
+      <label for="passwordInput">Password:</label>
+      <input type="text" class="form-control" id="passwordInput" name="passwordInput">
+    </div>
+  </form>
+
+  <a href="/login/test" class="btn btn-info btn-md" role="button">Sign in</a>
+  <a href="/home" class="btn btn-info btn-md" role="button">Register</a>
+
+  {{template "global/footer.tmpl" .}}
+{{end}}
